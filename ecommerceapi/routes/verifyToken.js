@@ -25,4 +25,15 @@ const verifyTokenAndAuthorization = (req, res, next) => {
     });
 };
 
-module.exports = { verifyToken, verifyTokenAndAuthorization };
+// Verify Token Admin will help  us to update the data of product and users by admin
+const verifyTokenAndAdmin = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.isAdmin) {
+            next();
+        } else {
+            res.status(403).json("You are not alowed to do that!");
+        }
+    });
+};
+
+module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin };
