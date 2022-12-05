@@ -37,13 +37,23 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
         res.status(500).json(err);
     }
 });
-// GET USER by id and it can only make changes if  the user is admin
+// GET USER by id or usesname as well as  it can only make changes if  the user is admin and you can access the users PROFILE
 
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         const { password, ...others } = user._doc;
         res.status(200).json(others);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// GET ALL USERS  it can only make changes if  the user is admin and you can access the users PROFILE
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
     } catch (err) {
         res.status(500).json(err);
     }
