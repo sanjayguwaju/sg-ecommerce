@@ -3,7 +3,7 @@ const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = requir
 const Product = require("../models/Product");
 const Cart = require("../models/Cart");
 
-//CREATE Products Where Admin can create the product
+//CREATE Products CART Where user can create the product
 router.post("/", verifyToken, async (req, res) => {
     const newCart = new Product(req.body);
     try {
@@ -15,7 +15,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 
-//UPDATE Products Where Admin can update the product
+//UPDATE Products CART Where user can update the product
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     try {
         const updatedCart = await Cart.findByIdAndUpdate(
@@ -42,7 +42,7 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
     }
 });
 
-// GET USER CART by id or usesname as well as  it can only make changes if  the user is admin and you can access the users PROFILE
+// GET USER CART by id or usesname as well as  it can only make changes if  the user is  and you can access the users PROFILE
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     try {
         const cart = await Cart.findOne({ userId: req.params.userId });
