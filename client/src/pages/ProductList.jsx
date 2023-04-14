@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
@@ -6,6 +7,7 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div``;
 
@@ -40,7 +42,31 @@ const Option = styled.option``;
 const ProductList = () => {
   const location = useLocation();
   const cat = location.pathname.split("/")[2];
-  const [filter, setFilters] = useState({}) 
+  const [filter, setFilters] = useState({})
+  const [sort, setSort] = useState("newest")
+
+  useEffect(()=> {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/products");
+        console.log(res);
+      } catch (error) {
+        
+      }
+    }
+    getProducts()
+   },[cat])
+
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filter,
+      [e.target.name]: value,
+    })
+  }
+  
+  console.log(filter);
+
   return (
     <Container>
       <Navbar />
@@ -49,7 +75,7 @@ const ProductList = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
+          <Select name="color" onChange={handleFilters}>
             <Option disabled>
               Color
             </Option>
@@ -60,7 +86,7 @@ const ProductList = () => {
             <Option>Yellow</Option>
             <Option>Green</Option>
           </Select>
-          <Select>
+          <Select name="size" onChange={handleFilters}>
             <Option disabled>
               Size
             </Option>
@@ -73,8 +99,8 @@ const ProductList = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
+          <Select onChange={(e) => setSort(e.target.value)}>
+            <Option>Newest</Option>
             <Option>Price (asc)</Option>
             <Option>Price (desc)</Option>
           </Select>
