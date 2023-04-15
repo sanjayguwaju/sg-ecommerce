@@ -150,7 +150,7 @@ const handleQuantity = (type) => {
 const handleClick = ()=> {
   //update cart
   dispatch(
-    addProduct({product, quantity, price:product.price*quantity})
+    addProduct({...product,quantity,color,size })
   )
 }
 
