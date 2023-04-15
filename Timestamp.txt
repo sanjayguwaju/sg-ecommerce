@@ -9,4 +9,12 @@ Current Timestamp: 2:06:54 [Completed]
 
 [3] - React Node.js E-Commerce App Full Tutorial (REDUX -  Stripe - JWT ) - MERN Stack Shopping App
 
-Current Timestamp: 0:14:00 
+
+Timestamp: 0:14:00 //Date 14 March 2023
+
+Timestamp: 0:22:00 //Date 21 March 2023
+
+Timestamp: 0:48:00 //Date 13 April 2023
+
+
+
