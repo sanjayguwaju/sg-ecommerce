@@ -1,11 +1,13 @@
+// All the icons above are imported
+import React from "react";
+import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
 
-// All the icons above are imported
-import React from "react";
-import styled from "styled-components";
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -66,6 +68,7 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity)
   return (
     <Container>
       <Wrapper>
@@ -83,7 +86,7 @@ const Navbar = () => {
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color='primary'>
+            <Badge badgeContent={quantity} color='primary'>
               <ShoppingCartOutlinedIcon />
             </Badge>
           </MenuItem>
@@ -92,5 +95,4 @@ const Navbar = () => {
     </Container>
   );
 };
-
 export default Navbar;
