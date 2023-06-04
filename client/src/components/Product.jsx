@@ -4,6 +4,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {Link} from "react-router-dom"
 
 const Info = styled.div`
   opacity: 0;
