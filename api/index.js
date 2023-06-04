@@ -7,8 +7,7 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
-const stripeRoute = require("./routes/stripe");
-const cors = require("cors");
+const stripeRoute = require("./routes/stripe")
 
 dotenv.config();
 const app = express();
