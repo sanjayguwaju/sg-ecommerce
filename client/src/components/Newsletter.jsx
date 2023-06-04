@@ -1,4 +1,4 @@
-import SendIcon from "@mui/icons-material/Send";
+import SendIcon from '@mui/icons-material/Send';
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -20,6 +20,7 @@ const Desc = styled.div`
   font-weight: 300;
   margin-bottom: 20px;
   ${mobile({ textAlign: "center" })}
+
 `;
 
 const InputContainer = styled.div`
@@ -51,7 +52,7 @@ const Newsletter = () => {
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
-        <Input placeholder='Your email' />
+        <Input placeholder="Your email" />
         <Button>
           <SendIcon />
         </Button>

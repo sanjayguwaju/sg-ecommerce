@@ -1,0 +1,26 @@
+{
+    "hosting": {
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    "storage": {
+      "rules": "storage.rules",
+      "cors": [
+        {
+          "origin": ["http://localhost:3000"],
+          "method": ["GET", "POST", "PUT", "DELETE"],
+          "maxAgeSeconds": 3600
+        }
+      ]
+    }
+  }

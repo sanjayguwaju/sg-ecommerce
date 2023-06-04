@@ -1,5 +1,9 @@
-import styled from "styled-components";
+import { useState } from "react";
+import styled,{ThemeProvider} from "styled-components";
+import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
+import { useDispatch, useSelector } from "react-redux";
+import { Link,createUser} from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -48,26 +52,67 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
 `;
 
-const Link = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
+const LinkTag = {
+  margins: {
+    small: '5px 0px',
+    medium: '10px 0px',
+    large: '20px 0px',
+  },
+  colors: {
+    primary: 'blue',
+    secondary: 'green',
+  },
+  fontSizes: {
+    small: '12px',
+    medium: '16px',
+    large: '20px',
+  },
+  textDecoration: 'underline',
+  cursor: 'pointer',
+}
+
+const Error = styled.span`
+  color: red;
 `;
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder='username' />
-          <Input placeholder='password' />
-          <Button>LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleClick} disabled={isFetching}>
+            LOGIN
+          </Button>
+          {error && <Error>Something went wrong...</Error>}
+          <ThemeProvider theme={LinkTag}>
+            <Link className="linkstag">DO NOT YOU REMEMBER THE PASSWORD?</Link>
+            <Link to="/register">CREATE A NEW ACCOUNT</Link>
+          </ThemeProvider>
         </Form>
       </Wrapper>
     </Container>

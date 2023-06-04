@@ -1,13 +1,13 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PhoneIcon from "@mui/icons-material/Phone";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import RoomIcon from "@mui/icons-material/Room";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import MailOutlineIcon from "@mui/icons-material/Mail";
-import { mobile } from "../responsive";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import PhoneIcon from '@mui/icons-material/Phone';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import RoomIcon from '@mui/icons-material/Room';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +46,7 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none" })}
 `;
 
 const Title = styled.h3`
@@ -69,6 +70,7 @@ const Right = styled.div`
   flex: 1;
   padding: 20px;
   ${mobile({ backgroundColor: "#fff8f8" })}
+
 `;
 
 const ContactItem = styled.div`
@@ -78,30 +80,30 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-  width: 50%;
+    width: 50%;
 `;
 
 const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>SUPER STORE</Logo>
+        <Logo>SuperStore</Logo>
         <Desc>
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
           humour, or randomised words which don’t look even slightly believable.
         </Desc>
         <SocialContainer>
-          <SocialIcon color='3B5999'>
+          <SocialIcon color="3B5999">
             <FacebookIcon />
           </SocialIcon>
-          <SocialIcon color='E4405F'>
+          <SocialIcon color="E4405F">
             <InstagramIcon />
           </SocialIcon>
-          <SocialIcon color='55ACEE'>
+          <SocialIcon color="55ACEE">
             <TwitterIcon />
           </SocialIcon>
-          <SocialIcon color='E60023'>
+          <SocialIcon color="E60023">
             <PinterestIcon />
           </SocialIcon>
         </SocialContainer>
@@ -124,16 +126,15 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <RoomIcon style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-          Tobinchester 98336
+          <RoomIcon style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
         </ContactItem>
         <ContactItem>
-          <PhoneIcon style={{ marginRight: "10px" }} /> +1 234 56 78
+          <PhoneIcon style={{marginRight:"10px"}}/> +1 234 56 78
         </ContactItem>
         <ContactItem>
-          <MailOutlineIcon style={{ marginRight: "10px" }} /> contact@lama.dev
+          <MailOutlineIcon style={{marginRight:"10px"}} /> contact@lama.dev
         </ContactItem>
-        <Payment src='https://i.ibb.co/Qfvn4z6/payment.png' />
+        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   );

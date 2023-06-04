@@ -1,19 +1,21 @@
-import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { mobile } from "../responsive";
-
-// All the icons above are imported
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
 `;
+
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
-  align-item: center;
+  align-items: center;
   justify-content: space-between;
   ${mobile({ padding: "10px 0px" })}
 `;
@@ -42,10 +44,12 @@ const Input = styled.input`
   border: none;
   ${mobile({ width: "50px" })}
 `;
+
 const Center = styled.div`
   flex: 1;
   text-align: center;
 `;
+
 const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
@@ -66,27 +70,34 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity)
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input />
+            <Input placeholder="Search" />
             <SearchIcon style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>SUPER STORE</Logo>
+          <Logo>Super Store</Logo>
         </Center>
         <Right>
+          <Link to="/register">
           <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to="/login">
           <MenuItem>SIGN IN</MenuItem>
+          </Link>
+          <Link to="/cart">
           <MenuItem>
-            <Badge badgeContent={4} color='primary'>
+            <Badge badgeContent={quantity} color="primary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>
