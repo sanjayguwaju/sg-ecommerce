@@ -1,6 +1,8 @@
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {Link} from "react-router-dom"
 
@@ -30,7 +32,8 @@ const Container = styled.div`
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
-  &:hover ${Info} {
+
+  &:hover ${Info}{
     opacity: 1;
   }
 `;

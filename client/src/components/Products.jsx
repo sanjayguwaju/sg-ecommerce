@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
@@ -10,60 +10,58 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Products = ({cat,filters, sort}) => {
+const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-    // One useEffect 1
-  useEffect(()=> {
+  useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(cat ? `http://localhost:5000/api/products?category=${cat}` 
-        : "http://localhost:5000/api/products");
-        setProducts(res.data)
-      } catch (err) {
-        
-      }
+        const res = await axios.get(
+          cat
+            ? `http://localhost:5000/api/products?category=${cat}`
+            : "http://localhost:5000/api/products"
+        );
+        setProducts(res.data);
+      } catch (err) {}
     };
-    getProducts()
-  },[cat])
+    getProducts();
+  }, [cat]);
 
-// useEffect 2 Explian yourself this snippet of code
   useEffect(() => {
-    cat && 
-    setFilteredProducts(
-      products.filter((item) => Object.entries(filters).every(([key, value])=> 
-      item[key].includes(value)))
-    )
-  },[products,cat,filters])
+    cat &&
+      setFilteredProducts(
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
+          )
+        )
+      );
+  }, [products, cat, filters]);
 
-  // useEffect 3 
   useEffect(() => {
     if (sort === "newest") {
-  setFilteredProducts((prev) => {
-    return [...prev].sort((a, b) => a.createdAt - b.createdAt);
-  });
-  } else if (sort === "price-asc") {
-  setFilteredProducts((prev) => {
-    return [...prev].sort((a, b) => a.price - b.price);
-  });
-  } else {
-  setFilteredProducts((prev) => {
-    return [...prev].sort((a, b) => b.price - a.price);
-  });
-  }
-},[sort]) 
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      );
+    } else if (sort === "asc") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.price - b.price)
+      );
+    } else {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
+      );
+    }
+  }, [sort]);
 
   return (
     <Container>
-      {cat 
-        ? filteredProducts.map((item) => 
-        <Product item={item} key={item.id} />
-      ) : products
-          .slice(0,7)
-          .map((item) => 
-        <Product item={item} key={item.id}/>
-      )}
+      {cat
+        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        : products
+            .slice(0, 8)
+            .map((item) => <Product item={item} key={item.id} />)}
     </Container>
   );
 };
