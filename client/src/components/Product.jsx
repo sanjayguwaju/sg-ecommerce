@@ -2,7 +2,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {Link} from "react-router-dom"
 
