@@ -2,7 +2,6 @@ import {useState } from "react";
 import { useDispatch,useSelector  } from "react-redux";
 import { useNavigate  } from 'react-router-dom';
 import { login } from "../../redux/apiCalls";
-// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +13,6 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
-
     if (currentUser) {
       navigate('/');
     }

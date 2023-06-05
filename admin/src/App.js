@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { Routes, Route, Navigate, Outlet,useNavigate} from "react-router-dom";
+import { useEffect } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
@@ -9,9 +12,6 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
-import { useSelector } from "react-redux";
-import { Routes, Route, Navigate, Outlet,useNavigate} from "react-router-dom";
-import { useEffect } from "react";
 
 function App() {
   const admin = useSelector((state) => state?.user?.currentUser?.isAdmin);
