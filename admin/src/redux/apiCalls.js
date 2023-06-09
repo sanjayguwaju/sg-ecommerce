@@ -16,7 +16,6 @@ import {
 } from "./productRedux";
 
 // For Login
-
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
