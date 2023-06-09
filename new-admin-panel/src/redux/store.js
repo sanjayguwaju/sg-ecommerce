@@ -3,8 +3,8 @@ import {
   combineReducers 
 } from "@reduxjs/toolkit";
 
-import userReducer from "./userRedux";
-import productReducer from "./productRedux";
+import userReducer from "./users/userSlice";
+import productReducer from "./products/productSlice";
 import {
   persistStore,
   persistReducer,
