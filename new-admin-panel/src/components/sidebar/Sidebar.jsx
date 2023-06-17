@@ -30,7 +30,9 @@ const Sidebar = () => {
           <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
+            <Link to="/" style={{ textDecoration: "none" }}>
             <span>Dashboard</span>
+            </Link>
           </li>
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
