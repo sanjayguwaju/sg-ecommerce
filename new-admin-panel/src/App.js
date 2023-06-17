@@ -3,6 +3,10 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import RegisterForm from "./pages/register/Register";
+import ForgetPasswordForm from "./pages/forgetpassword/ForgetPassword";
+import SignupForm from "./pages/signup/SignupForm";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -18,7 +22,10 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route exact path="login" element={<Login />} />
+            <Route exact path="register" element={<RegisterForm />} />
+            <Route exact path="forgetpassword" element={<ForgetPasswordForm />} />
+            <Route path="signup" element={<SignupForm />} />
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
