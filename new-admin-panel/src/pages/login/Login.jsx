@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
 import './login.scss';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../redux/users/userSlice';
+
+const initialState = {
+  username: '',
+  password: '',
+};
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState(initialState);
+  const  dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData);
+  }
+  
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
+    e.preventDefault(); // Prevents the page from reloading
+    dispatch(loginUser(formData));
+    navigate('/');
+  }
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
@@ -27,18 +32,16 @@ const LoginForm = () => {
         <label htmlFor="username">Username:</label>
         <input
           type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
+          name="username"
+          onChange={handleInputChange}
         />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password:</label>
         <input
           type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
+          name="password"
+          onChange={handleInputChange}
         />
       </div>
       <button type="submit">Login</button>
