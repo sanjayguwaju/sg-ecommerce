@@ -30,7 +30,7 @@ function App() {
     } else if (window.location.pathname !== "/register" || window.location.pathname !== "/forgetpassword") {
       navigate('/login')
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
