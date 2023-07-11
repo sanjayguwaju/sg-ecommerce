@@ -1,7 +1,7 @@
 import './login.scss';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/users/userSlice';
 
 const initialState = {
@@ -26,6 +26,7 @@ const LoginForm = () => {
   }
 
   return (
+    <div>
     <form className="login-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
       <div className="form-group">
@@ -45,7 +46,22 @@ const LoginForm = () => {
         />
       </div>
       <button type="submit">Login</button>
+      <hr />
+      <div>
+      <p>Don't have account ?</p>
+      <Link to="/register">
+      <span>Register Account</span>
+      </Link>
+      </div>
+
+      <div>
+      <p>Forget account ?. </p>
+      <Link to="/forgetpassword">
+      <span>Reset it</span>
+      </Link>
+      </div>
     </form>
+    </div>
   );
 };
 
