@@ -7,9 +7,7 @@ import List from "../../components/table/Table";
 const Single = () => {
   return (
     <div className="single">
-      <Sidebar />
       <div className="singleContainer">
-        <Navbar />
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
