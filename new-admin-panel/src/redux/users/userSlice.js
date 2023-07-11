@@ -26,6 +26,17 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// get all users
+export const getAllUsers = createAsyncThunk("getAllUsers", async ({ rejectWithValue }) => {
+  const response = await userRequest.get("/users");
+  try {
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -73,6 +84,27 @@ const authSlice = createSlice({
         state.user = null;
         console.log(action.payload);
       })
+      
+      // get all users
+      .addCase(getAllUsers.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = [...state.user, ...action.payload];
+        console.log(action.payload);
+      })
+
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+        console.log(action.payload);
+      });
+
   },
 });
 

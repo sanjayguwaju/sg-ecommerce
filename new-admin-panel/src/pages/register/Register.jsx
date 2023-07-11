@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './register.scss';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../redux/users/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const initialState = {
   username: '',
@@ -55,6 +55,13 @@ const RegisterForm = () => {
         />
       </div>
       <button type="submit">Submit</button>
+
+      <div>
+      <p>Don't have account ?</p>
+      <Link to="/login">
+      <span>Already have Account !. Sign in</span>
+      </Link>
+      </div>
     </form>
   );
 };
