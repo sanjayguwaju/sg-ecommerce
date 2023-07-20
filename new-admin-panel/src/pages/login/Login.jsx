@@ -21,7 +21,12 @@ const LoginForm = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the page from reloading
+    if (formData.username.trim() === '' || formData.password.trim() === '') {
+      // Display an error message or alert the user that the fields are required
+      return;
+    }
     dispatch(loginUser(formData));
+    console.log('Dispatched loginUser action');
     navigate('/');
   }
 
