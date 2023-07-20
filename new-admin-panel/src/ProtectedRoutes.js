@@ -6,9 +6,10 @@ const ProtectedRoutes = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      const userLocalStorage = localStorage.getItem("persist:root");
-      const userJson = JSON.parse(userLocalStorage)?.user;
-      const isSuccess = JSON.parse(userJson)?.isSuccess;
+    const userLocalStorage = localStorage.getItem("persist:root");
+    const userObject = JSON.parse(userLocalStorage);
+    const user = userObject ? JSON.parse(userObject.user) : null;
+    const isSuccess = user?.isSuccess;
 
       if (!isSuccess) {
         // Redirect to home page if isSuccess is true
